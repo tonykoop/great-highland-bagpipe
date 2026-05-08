@@ -1,0 +1,14 @@
+check_id,subsystem,target,formula_or_spec,predicted,measured,units,tolerance,environment,result,action
+VAL-001,Reference,A4 sanity check,440*2^((69-69)/12),440,,Hz,0,room,Pending,Confirms frequency formula implementation
+VAL-002,Chanter Low A,480 Hz at stable pressure,c/(2*L_eff),480,,Hz,+/-10 cents at prototype stage,record temp humidity pressure,Pending,Set reed and pressure before hole tuning
+VAL-003,Chanter Low A effective length,c/(2*480),14.073,,in,+/-0.25 in first-order estimate,room,Pending,Compare with physical 14.5 in body and reed behavior
+VAL-004,Chanter scale all notes,Just ratios from design.md,c/(2*f_note),see design.md,,cents,+/-15 cents prototype; +/-5 cents final,record pressure and reed,Pending,Tune from undersize with tape/enlargement
+VAL-005,Tenor drone A3,240 Hz,c/(4*240),14.073,,in effective,+/-0.5 in before slide tuning,room,Pending,Check slide range before duplicate tenor
+VAL-006,Tenor drone frequency,240 Hz with chosen reed,stopped pipe plus reed/slide,240,,Hz,+/-5 cents against chanter Low A,record pressure and reed,Pending,Adjust reed bridle/screw then slide
+VAL-007,Bass drone A2,120 Hz,c/(4*120),28.146,,in effective,+/-1.0 in before slide tuning,room,Pending,Confirm bass slide travel and reed stability
+VAL-008,Bag pressure,18-25 inH2O normal play,manometer reading,18-25,,inH2O,+/-2 inH2O,player test,Pending,Log start pressure and cutoff pressure for reeds
+VAL-009,Bag leak,Hold pressure for 60 seconds,pressure decay test,no audible leak,,pass/fail,No audible leak and slow pressure decay,bag assembled,Pending,Soap/bubble or manometer leak locate
+VAL-010,Blowpipe valve,No reverse flow,back-pressure test,no backflow,,pass/fail,No noticeable reverse flow,bag assembled,Pending,Replace or reseat valve if failed
+VAL-011,Drone slide fit,Smooth travel airtight,hand force plus leak test,smooth and sealed,,pass/fail,No binding no leak,hemped joint,Pending,Adjust hemp wrap and wax
+VAL-012,Stock tie-in,Five stocks airtight,pull and leak test,secure,,pass/fail,No stock movement no leak,bag tied,Pending,Retie if movement or bubbles appear
+VAL-013,Maintenance 24h retest,Pitch and pressure repeatability,repeat VAL-002 to VAL-012,within tolerance,,mixed,+/-5 cents drift target,24h after assembly,Pending,Identifies hemp compression and moisture drift

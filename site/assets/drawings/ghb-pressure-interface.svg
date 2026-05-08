@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" width="1000" height="640" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1000" height="640" fill="white" stroke="black"/>
+  <text x="36" y="44" font-size="22" font-weight="700">GHB-001 Pressure Interface - Bag, Stocks, Blowpipe</text>
+  <ellipse cx="420" cy="340" rx="245" ry="145" fill="#f2eadc" stroke="black" stroke-width="2"/>
+  <text x="356" y="344" font-size="24" font-weight="700">Reservoir Bag</text>
+  <text x="322" y="372" font-size="13">Validate 18-25 inH2O normal pressure</text>
+  <g fill="#fff" stroke="black" stroke-width="2">
+    <rect x="185" y="250" width="95" height="34" rx="10"/><rect x="318" y="200" width="95" height="34" rx="10"/>
+    <rect x="490" y="205" width="95" height="34" rx="10"/><rect x="595" y="300" width="95" height="34" rx="10"/>
+    <rect x="515" y="440" width="95" height="34" rx="10"/>
+    <rect x="80" y="430" width="145" height="34" rx="10"/>
+  </g>
+  <g font-size="12" text-anchor="middle">
+    <text x="232" y="272">Drone stock</text><text x="365" y="222">Drone stock</text>
+    <text x="538" y="227">Drone stock</text><text x="642" y="322">Blowpipe stock</text>
+    <text x="562" y="462">Chanter stock</text><text x="152" y="452">Blowpipe + valve</text>
+  </g>
+  <path d="M225 447 C260 435 290 410 330 390" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrow)"/>
+  <path d="M690 316 C760 316 795 290 840 250" fill="none" stroke="black" stroke-width="2" marker-end="url(#arrow)"/>
+  <text x="720" y="386" font-size="13">Every stock tie-in gets a leak test before reeds are installed.</text>
+  <text x="720" y="410" font-size="13">Blowpipe valve must hold reverse pressure.</text>
+  <text x="720" y="434" font-size="13">Hemped joints retested after 24 hours.</text>
+  <defs><marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth"><path d="M0,0 L0,6 L9,3 z" fill="black"/></marker></defs>
+</svg>

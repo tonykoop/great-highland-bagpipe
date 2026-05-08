@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Great Highland Bagpipe Build Packet — Tony Koop's Build Log</title>
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="hero"><div class="hero-img" style="background:linear-gradient(135deg,#5c3517,#a0522d);height:360px;"></div><div class="hero-text"><h1>Great Highland Bagpipe Build Packet</h1><p>Build a first-pass engineering packet for a complete Great Highland Bagpipe set
+that exposes the system interactions: chanter bore and reed, drones and drone
+reeds, bag pressure, stocks, blowpipe valve, tuning slides, sourcing,
+maintenance, and validation. The goal is not to claim a finished concert-grade
+set from formulas alone; it is to define the measured build loop that gets from
+workbook geometry to a playable, serviceable prototype.</p></div></header>
+<main>
+<section><h2>What this is</h2><p class="placeholder">(section missing in design.md)</p></section>
+<section><h2>The design</h2><p>The Great Highland Bagpipe is a coupled reed/resonator/reservoir system. The
+packet intentionally uses different first-order models for different
+subsystems, then validates the coupled result under pressure.</p>
+<h3>Chanter</h3>
+<p>The chanter is a conical bore driven by a double reed. A conical reed pipe
+behaves closer to an open-open pipe for pitch than a cylindrical stopped pipe,
+but tone holes, reed compliance, and bore taper dominate the final intonation.
+The workbook dimensions and measured practice-chanter hole positions are the
+starting geometry.</p>
+<p>```text
+f_chanter ~= c / (2 * L_eff)
+L_eff ~= c / (2 * f_target)
+c = speed of sound in inches per second
+```</p>
+<p>Worked example from the workbook:</p>
+<p>```text
+Low A = 480 Hz
+c = 13510 in/s
+L_eff = 13510 / (2 * 480) = 14.073 in
+Workbook physical full chanter length = 14.5 in
+```</p>
+<p>The difference between effective and physical length is expected because the
+reed seat, conical end behavior, bell flare, and tone-hole network all shift the
+effective acoustic length. Final tuning must start with undersize holes and
+open them by measurement.</p>
+<h3>Drones</h3>
+<p>The drones are cylindrical single-reed pipes, closed at the reed end and open at
+the top. They are first-pass stopped pipes with odd-harmonic emphasis.</p>
+<p>```text
+f_drone ~= c / (4 * L_eff)
+L_eff ~= c / (4 * f_target)
+```</p>
+<p>Worked examples from the workbook:</p>
+<p>```text
+Tenor drone A3 = 240 Hz
+L_eff = 13510 / (4 * 240) = 14.073 in</p>
+<p>Bass drone A2 = 120 Hz
+L_eff = 13510 / (4 * 120) = 28.146 in
+```</p>
+<p>The workbook&#x27;s physical sections intentionally exceed or subdivide these
+effective lengths because tuning chambers, hemped slides, reed seats, and cap
+geometry move the acoustic endpoint.</p>
+<h3>Bag Pressure And Reeds</h3>
+<p>The bag is a pressure reservoir, not just a container. The reed only oscillates
+inside a stable pressure window. Pressure changes can sharpen or destabilize
+the chanter and drones, so every tuning row in `validation.csv` includes
+environment and pressure notes.</p>
+<p>```text
+cents_error = 1200 * log2(measured_hz / target_hz)
+pressure_target = 18-25 inH2O for first prototype testing
+```</p>
+<h3>Empirical Correction Guard</h3>
+<p>No Native American flute K2 correction is applied here. This packet uses
+first-order conical/stopped-pipe estimates plus measured GHB-specific
+validation rows. Any future correction must be derived from measured chanter,
+drone, reed, and pressure data from this family.</p><figure><object data="assets/drawings/ghb-chanter-front.svg" type="image/svg+xml" class="drawing"></object><figcaption>ghb-chanter-front</figcaption></figure>
+<figure><object data="assets/drawings/ghb-drone-set.svg" type="image/svg+xml" class="drawing"></object><figcaption>ghb-drone-set</figcaption></figure>
+<figure><object data="assets/drawings/ghb-pressure-interface.svg" type="image/svg+xml" class="drawing"></object><figcaption>ghb-pressure-interface</figcaption></figure>
+<figure><object data="assets/drawings/ghb-system-validation.svg" type="image/svg+xml" class="drawing"></object><figcaption>ghb-system-validation</figcaption></figure></section>
+<section><h2>The build</h2><h2>Great Highland Bagpipe Assembly Manual</h2>
+<h3>Shop Principle</h3>
+<p>Do not build the ornate final set first. Bagpipes are a pressure-coupled reed
+system; a beautiful bore that cannot be tuned with the chosen reeds is scrap.
+Retire reed, pressure, and leakage risk before committing expensive blackwood.</p>
+<h3>Tools And Fixtures</h3>
+<ul><li>Lathe with chuck/collet support, tailstock drill chuck, live center, and</li><li>Step-drill set, long bits, reamers, bore gauges, and a purpose-made chanter</li><li>V-block or indexed drill fixture for chanter tone holes.</li><li>Manometer for bag pressure.</li><li>Calipers, small bore gauges, tuner, tape, beeswax, waxed hemp, and leak-test</li><li>Reed-seat and tenon/socket gauges turned from stable offcuts.</li></ul>
+<h3>Phase 0 - Buy The Coupling Parts</h3>
+<p>1. Buy at least three commercial chanter reeds before finalizing the reed seat.
+2. Buy a synthetic drone reed set.
+3. Buy or borrow a synthetic zipper bag and a blowpipe valve.
+4. Measure reed body/staple diameters and update `validation.csv`.</p>
+<h3>Phase 1 - Prototype Chanter</h3>
+<p>1. Rough-turn the blank oversized and leave holding allowance at both ends.
+2. Establish the bore datum from the reed seat end.
+3. Step-drill conservatively, then ream to the planned taper.
+4. Turn the exterior only after the bore is confirmed straight enough.
+5. Drill tone holes undersize using the datum plan in `drawing-brief.md`.
+6. Fit a commercial reed and check Low A at stable pressure.
+7. Use tape and incremental enlargement to bring the scale into range.</p>
+<h3>Phase 2 - Tenor Drone Proof</h3>
+<p>1. Build one tenor drone bottom and top.
+2. Bore the bottom and top to the workbook dimensions.
+3. Turn the tuning slide with planned hemp clearance.
+4. Fit a tenor drone reed and find the slide range for A3.
+5. Log reed setting, pressure, temperature, and cents error.
+6. Duplicate the validated tenor.</p>
+<h3>Phase 3 - Bass Drone</h3>
+<p>1. Build the bass bottom, middle, and top as separate sections.
+2. Use a steady rest and center-drill strategy for the long middle section.
+3. Bore slightly conservatively where reaming or sanding is planned.
+4. Fit the bass drone reed and confirm A2 with usable tuning travel.</p>
+<h3>Phase 4 - Stocks, Bag, And Blowpipe</h3>
+<p>1. Batch-turn five stocks with tie-in grooves.
+2. Turn the blowpipe body and fit the one-way valve.
+3. Tie the stocks into the synthetic bag.
+4. Leak-test each stock before inserting reeds or drones.
+5. Assemble all pipes with hemped joints and repeat the leak test.</p>
+<h3>Phase 5 - Tuning And Balancing</h3>
+<p>1. Tune both tenors together at stable pressure.
+2. Add the bass drone and tune it against the tenors.
+3. Add the chanter and tune Low A against the drone reference.
+4. Work upward through the chanter notes, changing one variable at a time.
+5. If pressure changes shift multiple notes together, correct pressure/reed
+   behavior before changing hole geometry.</p>
+<h3>Maintenance Loop</h3>
+<ul><li>Before each session: inspect reeds, check hemped joints, confirm blowpipe</li><li>After each session: dry moisture from blowpipe and stocks, inspect reed</li><li>Weekly during prototype: repeat drone tuning and bag leak validation.</li><li>After 24 hours: recheck pitch because hemp compression can change slide</li></ul>
+<h3>Stop Conditions</h3>
+<p>Stop and redesign or rebuild the affected part if any of these occur:</p>
+<ul><li>Chanter bore wander is visible or pitch errors cannot be corrected with hole</li><li>A stock tie-in leaks after two attempts.</li><li>A tuning slide binds before reaching target pitch.</li><li>A reed only speaks outside the expected pressure range.</li><li>Any crack appears around a bore, stock groove, or slide socket.</li></ul><p class="placeholder">No process photos in <code>images/</code>. Add at least one to populate this section.</p></section>
+<section><h2>The numbers</h2><h3>BOM</h3><table><thead><tr><th>item_id</th><th>assembly</th><th>part</th><th>qty</th><th>material_spec</th><th>operation</th><th>source_or_supplier</th><th>search_terms</th><th>substitute_rule</th><th>drawing_ref</th><th>estimated_cost</th><th>notes</th></tr></thead><tbody><tr><td>BOM-001</td><td>Chanter</td><td>Full chanter blank</td><td class="num">1</td><td>African blackwood 2x2x16 in minimum; prototype in ipe Delrin cherry or walnut</td><td>Turn exterior; bore; ream; drill holes</td><td>Gilmer Wood; Bell Forest; Cook Woods</td><td>African blackwood turning blank 2x2x18</td><td>Use Delrin or ipe for first prototype; avoid final blackwood until bore workflow is proven</td><td>drawings/ghb-chanter-front.svg</td><td class="num">40-80</td><td>Workbook recommends cheaper practice material first</td></tr>
+<tr><td>BOM-002</td><td>Drones</td><td>Tenor drone section blanks</td><td class="num">4</td><td>African blackwood or Delrin 2x2x10 in</td><td>Turn; bore; tenon/socket; hemp slides</td><td>Gilmer Wood; Bell Forest; Cook Woods; plastics supplier</td><td>blackwood drone blank Delrin rod 2 inch</td><td>Build one tenor first then duplicate after validation</td><td>drawings/ghb-drone-set.svg</td><td class="num">80-180</td><td>Two bottoms and two tops</td></tr>
+<tr><td>BOM-003</td><td>Drones</td><td>Bass drone section blanks</td><td class="num">3</td><td>African blackwood or Delrin 2x2x10 and 2x2x16 in</td><td>Turn; bore; tenon/socket; hemp slides</td><td>Gilmer Wood; Bell Forest; Cook Woods</td><td>blackwood bass drone blank</td><td>Use Delrin for geometry proof if blackwood cost is limiting</td><td>drawings/ghb-drone-set.svg</td><td class="num">70-170</td><td>Bottom middle and top sections</td></tr>
+<tr><td>BOM-004</td><td>Stocks</td><td>Stock blanks</td><td class="num">5</td><td>African blackwood or Delrin 2x2x4 in</td><td>Turn bore and tie-in groove</td><td>Same as wood/plastic supplier</td><td>bagpipe stock blank Delrin blackwood</td><td>All stocks can be prototype Delrin for serviceability</td><td>drawings/ghb-pressure-interface.svg</td><td class="num">30-60</td><td>Chanter stock blowpipe stock and three drone stocks</td></tr>
+<tr><td>BOM-005</td><td>Blowpipe</td><td>Blowpipe blank and mouthpiece</td><td class="num">1</td><td>Blackwood or Delrin body with plastic mouthpiece</td><td>Turn straight bore and valve seat</td><td>Bagpipe supplier or plastics supplier</td><td>bagpipe blowpipe mouthpiece valve</td><td>Buy valve/mouthpiece if turning body only</td><td>drawings/ghb-pressure-interface.svg</td><td class="num">20-40</td><td>Includes one-way valve interface</td></tr>
+<tr><td>BOM-006</td><td>Bag</td><td>Synthetic zipper bag</td><td class="num">1</td><td>Bannatyne Canmore Ross or equivalent</td><td>Buy ready-made; tie in stocks</td><td>Henderson&#x27;s; National Piping Centre shop</td><td>synthetic highland bagpipe bag zipper</td><td>Use synthetic for first validation because leak behavior is repeatable</td><td>images/ghb-system-map.svg</td><td class="num">80-120</td><td>Actual price/date must be checked before purchase</td></tr>
+<tr><td>BOM-007</td><td>Reeds</td><td>Chanter reeds</td><td class="num">3</td><td>Cane double reeds</td><td>Fit and test</td><td>G1; Chesney; Melvin; Husk</td><td>highland bagpipe chanter reed medium</td><td>Buy multiple strengths; do not make first reeds</td><td>validation.csv</td><td class="num">45-75</td><td>Reed selection dominates response</td></tr>
+<tr><td>BOM-008</td><td>Reeds</td><td>Synthetic drone reed set</td><td class="num">1</td><td>Two tenor plus one bass synthetic set</td><td>Fit; tune bridles/screws</td><td>Ezeedrone; Kinnaird; Canning</td><td>highland bagpipe synthetic drone reeds set</td><td>Cane reeds optional after system is stable</td><td>validation.csv</td><td class="num">40-80</td><td>Reduces prototype variability</td></tr>
+<tr><td>BOM-009</td><td>Hardware</td><td>Hemp and beeswax</td><td>1 spool</td><td>Waxed yellow hemp plus beeswax</td><td>Wrap joints and reed seats</td><td>Bagpipe supplier</td><td>waxed hemp bagpipe beeswax</td><td>None; fit depends on hemp</td><td>assembly-manual.md</td><td class="num">5-10</td><td>Track compression during 24-hour retest</td></tr>
+<tr><td>BOM-010</td><td>Decorative mounts</td><td>Imitation ivory mounts and ferrules</td><td>1 set</td><td>Delrin imitation ivory or nickel silver</td><td>Turn or buy; polish; optional engraving</td><td>Bagpipe supplier or plastics supplier</td><td>bagpipe projecting mounts imitation ivory</td><td>Prototype may omit decoration</td><td>drawings/ghb-drone-set.svg</td><td class="num">30-80</td><td>Decoration must not block service access</td></tr>
+<tr><td>BOM-011</td><td>Tooling</td><td>Chanter tapered reamer</td><td class="num">1</td><td>0.13 to 0.87 in taper approx</td><td>Buy custom or grind; use with lathe support</td><td>Custom toolmaker or woodwind tool supplier</td><td>bagpipe chanter reamer tapered</td><td>No safe substitute for final bore; prototype can use measured stepped tests</td><td>drawing-brief.md</td><td class="num">50-150</td><td>High-risk tool</td></tr>
+<tr><td>BOM-012</td><td>Accessories</td><td>Cord tassels and cover</td><td>1 set</td><td>Tartan cover cords ribbons</td><td>Buy after prototype plays</td><td>Bagpipe supplier</td><td>highland bagpipe cover cord tassels</td><td>Optional during acoustic validation</td><td>visual-bom-brief.md</td><td class="num">50-100</td><td>Keep out of first acoustic tests</td></tr></tbody></table><h3>Cut list</h3><table><thead><tr><th>part_id</th><th>assembly</th><th>qty</th><th>material</th><th>rough_dimensions_in</th><th>final_dimensions_in</th><th>grain_or_orientation</th><th>operation</th><th>yield_or_offcut_plan</th><th>notes</th></tr></thead><tbody><tr><td>CUT-001</td><td>Chanter</td><td class="num">1</td><td>African blackwood or prototype Delrin/ipe/cherry</td><td>2 x 2 x 16.5</td><td>OD 0.88 reed seat to 1.25 bell; length 14.5</td><td>Straight grain along bore; avoid defects</td><td>Turn exterior; drill/ream conical bore; drill tone holes</td><td>Save offcut for reed-seat and finish tests</td><td>Leave extra length until bore and reed seat are proven</td></tr>
+<tr><td>CUT-002</td><td>Tenor bottom sections</td><td class="num">2</td><td>African blackwood or Delrin</td><td>2 x 2 x 10</td><td>8.0 long; bore 0.344 nominal</td><td>Grain along bore</td><td>Turn; bore; make tenon/socket</td><td>Pair offcuts for slide gauges</td><td>Build first tenor bottom as setup proof</td></tr>
+<tr><td>CUT-003</td><td>Tenor top sections</td><td class="num">2</td><td>African blackwood or Delrin</td><td>2 x 2 x 10</td><td>9.0 long; bore 0.563 nominal</td><td>Grain along bore</td><td>Turn; bore; chamber; cap feature</td><td>Use matching offcuts for cap tests</td><td>Tenors should be identical after validation</td></tr>
+<tr><td>CUT-004</td><td>Bass bottom</td><td class="num">1</td><td>African blackwood or Delrin</td><td>2 x 2 x 10</td><td>8.0 long; bore 0.375 nominal</td><td>Grain along bore</td><td>Turn; bore; tenon/socket</td><td>Save bore plug sample</td><td>Validate before bass middle</td></tr>
+<tr><td>CUT-005</td><td>Bass middle</td><td class="num">1</td><td>African blackwood or Delrin</td><td>2 x 2 x 16</td><td>15.0 long; bore 0.438 nominal</td><td>Grain along bore</td><td>Turn; long bore; tenon/socket</td><td>Plan center-drill from both ends if needed</td><td>Highest long-bore wander risk</td></tr>
+<tr><td>CUT-006</td><td>Bass top</td><td class="num">1</td><td>African blackwood or Delrin</td><td>2 x 2 x 10</td><td>9.0 long; bore 0.625 nominal</td><td>Grain along bore</td><td>Turn; bore; chamber/cap feature</td><td>Use offcut for cap test</td><td>Match drone top visual language</td></tr>
+<tr><td>CUT-007</td><td>Stocks</td><td class="num">5</td><td>African blackwood or Delrin</td><td>2 x 2 x 4 each</td><td>2.5-3.0 long; bore to mating part; tie-in groove</td><td>Grain along bore</td><td>Batch turn and bore</td><td>Make one extra stock blank</td><td>Groove depth must preserve wall strength</td></tr>
+<tr><td>CUT-008</td><td>Blowpipe</td><td class="num">1</td><td>African blackwood or Delrin</td><td>2 x 2 x 14</td><td>10-12 long; bore 0.5 nominal</td><td>Grain along bore</td><td>Turn; bore; valve seat; mouthpiece fit</td><td>Offcut for valve seat test</td><td>Valve must seal before full assembly</td></tr>
+<tr><td>CUT-009</td><td>Mounts/ferrules</td><td>1 set</td><td>Delrin imitation ivory or nickel silver rod</td><td>As required by profile</td><td>Fit to each section</td><td>Neutral; avoid stress fit</td><td>Turn rings and ferrules</td><td>Prototype can omit</td><td>Do not glue permanently until tuning slides are proven</td></tr>
+<tr><td>CUT-010</td><td>Fixture gauges</td><td>1 set</td><td>Hardwood or Delrin scraps</td><td>Shop offcuts</td><td>Reed seat gauges; tenon gauges; bore check plugs</td><td>Stable material</td><td>Turn gauges before final parts</td><td>Reuse across builds</td><td>Gauges reduce repeated measurement error</td></tr></tbody></table></section>
+<section><h2>Tuning &amp; validation</h2><table><thead><tr><th>check_id</th><th>subsystem</th><th>target</th><th>formula_or_spec</th><th>predicted</th><th>measured</th><th>units</th><th>tolerance</th><th>environment</th><th>result</th><th>action</th></tr></thead><tbody><tr><td>VAL-001</td><td>Reference</td><td>A4 sanity check</td><td>440*2^((69-69)/12)</td><td class="num">440</td><td></td><td>Hz</td><td class="num">0</td><td>room</td><td>Pending</td><td>Confirms frequency formula implementation</td></tr>
+<tr><td>VAL-002</td><td>Chanter Low A</td><td>480 Hz at stable pressure</td><td>c/(2*L_eff)</td><td class="num">480</td><td></td><td>Hz</td><td>+/-10 cents at prototype stage</td><td>record temp humidity pressure</td><td>Pending</td><td>Set reed and pressure before hole tuning</td></tr>
+<tr><td>VAL-003</td><td>Chanter Low A effective length</td><td>c/(2*480)</td><td class="num">14.073</td><td></td><td>in</td><td>+/-0.25 in first-order estimate</td><td>room</td><td>Pending</td><td>Compare with physical 14.5 in body and reed behavior</td></tr>
+<tr><td>VAL-004</td><td>Chanter scale all notes</td><td>Just ratios from design.md</td><td>c/(2*f_note)</td><td>see design.md</td><td></td><td>cents</td><td>+/-15 cents prototype; +/-5 cents final</td><td>record pressure and reed</td><td>Pending</td><td>Tune from undersize with tape/enlargement</td></tr>
+<tr><td>VAL-005</td><td>Tenor drone A3</td><td>240 Hz</td><td>c/(4*240)</td><td class="num">14.073</td><td></td><td>in effective</td><td>+/-0.5 in before slide tuning</td><td>room</td><td>Pending</td><td>Check slide range before duplicate tenor</td></tr>
+<tr><td>VAL-006</td><td>Tenor drone frequency</td><td>240 Hz with chosen reed</td><td>stopped pipe plus reed/slide</td><td class="num">240</td><td></td><td>Hz</td><td>+/-5 cents against chanter Low A</td><td>record pressure and reed</td><td>Pending</td><td>Adjust reed bridle/screw then slide</td></tr>
+<tr><td>VAL-007</td><td>Bass drone A2</td><td>120 Hz</td><td>c/(4*120)</td><td class="num">28.146</td><td></td><td>in effective</td><td>+/-1.0 in before slide tuning</td><td>room</td><td>Pending</td><td>Confirm bass slide travel and reed stability</td></tr>
+<tr><td>VAL-008</td><td>Bag pressure</td><td>18-25 inH2O normal play</td><td>manometer reading</td><td class="num">18-25</td><td></td><td>inH2O</td><td>+/-2 inH2O</td><td>player test</td><td>Pending</td><td>Log start pressure and cutoff pressure for reeds</td></tr>
+<tr><td>VAL-009</td><td>Bag leak</td><td>Hold pressure for 60 seconds</td><td>pressure decay test</td><td>no audible leak</td><td></td><td>pass/fail</td><td>No audible leak and slow pressure decay</td><td>bag assembled</td><td>Pending</td><td>Soap/bubble or manometer leak locate</td></tr>
+<tr><td>VAL-010</td><td>Blowpipe valve</td><td>No reverse flow</td><td>back-pressure test</td><td>no backflow</td><td></td><td>pass/fail</td><td>No noticeable reverse flow</td><td>bag assembled</td><td>Pending</td><td>Replace or reseat valve if failed</td></tr>
+<tr><td>VAL-011</td><td>Drone slide fit</td><td>Smooth travel airtight</td><td>hand force plus leak test</td><td>smooth and sealed</td><td></td><td>pass/fail</td><td>No binding no leak</td><td>hemped joint</td><td>Pending</td><td>Adjust hemp wrap and wax</td></tr>
+<tr><td>VAL-012</td><td>Stock tie-in</td><td>Five stocks airtight</td><td>pull and leak test</td><td>secure</td><td></td><td>pass/fail</td><td>No stock movement no leak</td><td>bag tied</td><td>Pending</td><td>Retie if movement or bubbles appear</td></tr>
+<tr><td>VAL-013</td><td>Maintenance 24h retest</td><td>Pitch and pressure repeatability</td><td>repeat VAL-002 to VAL-012</td><td>within tolerance</td><td></td><td>mixed</td><td>+/-5 cents drift target</td><td>24h after assembly</td><td>Pending</td><td>Identifies hemp compression and moisture drift</td></tr></tbody></table></section>
+<section><h2>Known risks</h2><h2>Risks - Great Highland Bagpipe</h2>
+<h3>Acoustic Chanter Bore And Reed Do Not Agree</h3>
+<p>**Symptom:** Low A speaks, but the chanter scale cannot be brought into tune by
+normal tape and hole enlargement.</p>
+<p>**Mechanism:** The conical bore, reed compliance, tone-hole network, and bag
+pressure form a coupled system. A first-order `c/(2L)` estimate does not capture
+the full behavior.</p>
+<p>**Test:** Build the prototype chanter in low-cost material, record every note at
+stable pressure, and compare cents error against `validation.csv`.</p>
+<p>**Mitigation:** Keep holes undersize, test with multiple commercial reeds, and
+adjust bore/hole plan before using blackwood.</p>
+<p>**Severity:** High - human decision required before final-material chanter.</p>
+<h3>Structural Long Bore Wanders Or Cracks</h3>
+<p>**Symptom:** Chanter or bass middle section shows off-center bore, thin wall, or
+cracking during reaming/turning.</p>
+<p>**Mechanism:** Long small-diameter bores in dense wood create heat, tool wander,
+and hoop stress. Blackwood is hard and expensive but not forgiving.</p>
+<p>**Test:** Bore and ream a prototype blank, then measure wall thickness at both
+ends and inspect for heat checking.</p>
+<p>**Mitigation:** Use headstock-supported drilling, clear chips often, prototype
+in Delrin/ipe/cherry first, and reject blanks with runout or checks.</p>
+<p>**Severity:** High - human decision required before final-material bore work.</p>
+<h3>Ergonomic Pressure And Reach Fatigue</h3>
+<p>**Symptom:** The set can be tuned on the bench but is tiring or unstable during
+real playing.</p>
+<p>**Mechanism:** Bag size, blowpipe length, stock placement, chanter hand spacing,
+and reed strength interact with player posture and arm pressure.</p>
+<p>**Test:** Run a timed 10-minute playing simulation with manometer readings and
+note any hand stretch, neck/arm fatigue, or pressure instability.</p>
+<p>**Mitigation:** Start with a known synthetic bag size, use medium reeds, keep
+the practice chanter step, and adjust blowpipe/stock ergonomics before final
+decoration.</p>
+<p>**Severity:** Medium.</p>
+<h3>Supply Reed Or Bag Substitution Changes The Whole System</h3>
+<p>**Symptom:** A substitute reed or bag part fits mechanically but changes pitch,
+pressure threshold, or stock layout.</p>
+<p>**Mechanism:** Reed body/staple dimensions and bag stock-hole positions are not
+universal across makers. The acoustic and mechanical interface can shift.</p>
+<p>**Test:** Measure purchased reed bodies, staple OD, bag stock layout, and valve
+fit before cutting reed seats or tying in stocks.</p>
+<p>**Mitigation:** Buy coupling parts first, update drawings from measured parts,
+and keep supplier substitutions out of final dimensions until measured.</p>
+<p>**Severity:** Medium.</p>
+<h3>Fit/Finish Decorative Mounts Lock In Before Tuning Is Stable</h3>
+<p>**Symptom:** Ferrules, imitation ivory mounts, or engraving prevent later slide,
+stock, or bore corrections.</p>
+<p>**Mechanism:** Decorative parts can hide joints, limit slide travel, or make a
+prototype feel &quot;finished&quot; before acoustic validation is done.</p>
+<p>**Test:** Assemble and tune the plain prototype for 24 hours before installing
+permanent decorative parts.</p>
+<p>**Mitigation:** Make mounts removable in prototype, omit engraving until the
+validation report is clean, and keep slide access visible.</p>
+<p>**Severity:** Low.</p></section>
+<section><h2>Family overview</h2><ul><li><a href="family/GHB-CHANTER.html">GHB-CHANTER — Low A</a></li><li><a href="family/GHB-TENOR-1.html">GHB-TENOR-1 — A3</a></li><li><a href="family/GHB-TENOR-2.html">GHB-TENOR-2 — A3</a></li><li><a href="family/GHB-BASS.html">GHB-BASS — A2</a></li><li><a href="family/GHB-BLOWPIPE.html">GHB-BLOWPIPE — pressure supply</a></li><li><a href="family/GHB-STOCKS.html">GHB-STOCKS — airtight fit</a></li></ul></section>
+<section><h2>Resources</h2><ul><li><a href="../README.md">Project README</a></li><li><a href="../capstone-deck.pptx">Capstone deck (.pptx)</a></li><li><a href="../print-packet.pdf">Printable shop packet (.pdf)</a></li><li><a href="https://github.com/tonykoop">Tony's GitHub</a></li></ul></section>
+</main>
+<footer>
+Built by Tony Koop · CC-BY 4.0 · <a href="https://github.com/tonykoop">github.com/tonykoop</a>
+</footer>
+</body>
+</html>

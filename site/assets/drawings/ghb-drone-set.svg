@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 620" width="1100" height="620" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1100" height="620" fill="white" stroke="black"/>
+  <text x="36" y="44" font-size="22" font-weight="700">GHB-001 Drone Set - Tenor And Bass Sections</text>
+  <text x="36" y="68" font-size="12" fill="#444">Stopped cylindrical reed pipes. Physical sections include reed seats, tuning chambers, and hemped slide allowance.</text>
+  <g stroke="black" stroke-width="2" fill="#f8f8f8">
+    <rect x="120" y="150" width="210" height="34"/><rect x="365" y="150" width="240" height="34"/>
+    <rect x="120" y="290" width="210" height="34"/><rect x="365" y="290" width="390" height="34"/><rect x="790" y="290" width="240" height="34"/>
+  </g>
+  <g font-size="13">
+    <text x="120" y="135">Tenor bottom 8 in, bore 0.344 in</text>
+    <text x="365" y="135">Tenor top 9 in, bore 0.563 in, tuning chamber approx 3.125 in</text>
+    <text x="120" y="275">Bass bottom 8 in, bore 0.375 in</text>
+    <text x="365" y="275">Bass middle 15 in, bore 0.438 in</text>
+    <text x="790" y="275">Bass top 9 in, bore 0.625 in</text>
+  </g>
+  <g stroke="#777" stroke-dasharray="5 4">
+    <line x1="120" y1="167" x2="605" y2="167"/>
+    <line x1="120" y1="307" x2="1030" y2="307"/>
+  </g>
+  <g font-size="12" fill="#333">
+    <text x="120" y="220">Tenor target: A3 = 240 Hz, first-order L_eff = 14.073 in. Use slide and reed setting for final pitch.</text>
+    <text x="120" y="360">Bass target: A2 = 120 Hz, first-order L_eff = 28.146 in. Validate with bass reed before final mount work.</text>
+  </g>
+  <g fill="white" stroke="black">
+    <circle cx="120" cy="205" r="12"/><circle cx="605" cy="205" r="12"/>
+    <circle cx="120" cy="345" r="12"/><circle cx="1030" cy="345" r="12"/>
+  </g>
+  <g font-size="11" text-anchor="middle">
+    <text x="120" y="209">A</text><text x="605" y="209">C</text><text x="120" y="349">A</text><text x="1030" y="349">C</text>
+  </g>
+  <rect x="820" y="420" width="220" height="150" fill="white" stroke="black"/>
+  <text x="836" y="448" font-size="12" font-weight="700">Title Block</text>
+  <text x="836" y="472" font-size="11">Instrument: GHB-001</text>
+  <text x="836" y="494" font-size="11">Sheet: Drone Set</text>
+  <text x="836" y="516" font-size="11">Units: inches</text>
+  <text x="836" y="538" font-size="11">Rev: v4 packet</text>
+  <text x="836" y="560" font-size="11">Date: 2026-05-08</text>
+</svg>

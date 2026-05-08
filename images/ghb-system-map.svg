@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" width="1200" height="720" font-family="Helvetica, Arial, sans-serif">
+  <rect width="1200" height="720" fill="#f7f7f2"/>
+  <text x="60" y="70" font-size="34" font-weight="700" fill="#151515">Great Highland Bagpipe System Map</text>
+  <text x="60" y="105" font-size="16" fill="#555">Pressure reservoir + reeds + chanter + drones + service joints</text>
+
+  <ellipse cx="520" cy="400" rx="240" ry="150" fill="#e9d8bd" stroke="#222" stroke-width="3"/>
+  <text x="455" y="405" font-size="26" font-weight="700" fill="#222">BAG</text>
+  <text x="405" y="435" font-size="14" fill="#333">18-25 inH2O pressure target</text>
+
+  <rect x="210" y="370" width="170" height="42" rx="8" fill="#fff" stroke="#222" stroke-width="2"/>
+  <text x="232" y="397" font-size="16" font-weight="700">Blowpipe + valve</text>
+  <path d="M380 392 C430 392 445 390 475 385" fill="none" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <rect x="690" y="500" width="180" height="42" rx="8" fill="#fff" stroke="#222" stroke-width="2"/>
+  <text x="735" y="527" font-size="16" font-weight="700">Chanter</text>
+  <path d="M650 470 C700 500 700 520 690 520" fill="none" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g stroke="#222" stroke-width="3" fill="#fff">
+    <rect x="770" y="130" width="46" height="330" rx="12"/>
+    <rect x="850" y="130" width="46" height="330" rx="12"/>
+    <rect x="940" y="80" width="56" height="430" rx="14"/>
+  </g>
+  <text x="742" y="118" font-size="16" font-weight="700">Tenor drone A3</text>
+  <text x="842" y="118" font-size="16" font-weight="700">Tenor drone A3</text>
+  <text x="930" y="66" font-size="16" font-weight="700">Bass drone A2</text>
+  <path d="M660 330 C710 260 735 230 770 220" fill="none" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M690 345 C755 285 805 245 850 225" fill="none" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
+  <path d="M715 365 C810 310 880 255 940 230" fill="none" stroke="#222" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g fill="#fff" stroke="#555" stroke-width="2">
+    <rect x="88" y="180" width="250" height="110" rx="8"/>
+    <rect x="88" y="520" width="280" height="110" rx="8"/>
+    <rect x="850" y="560" width="250" height="90" rx="8"/>
+  </g>
+  <text x="112" y="215" font-size="18" font-weight="700">Reeds</text>
+  <text x="112" y="244" font-size="14">Chanter reed: cane double reed</text>
+  <text x="112" y="268" font-size="14">Drone reeds: synthetic first pass</text>
+  <path d="M338 235 C500 210 660 180 780 165" fill="none" stroke="#777" stroke-width="2" stroke-dasharray="7 5"/>
+
+  <text x="112" y="555" font-size="18" font-weight="700">Validation Loop</text>
+  <text x="112" y="584" font-size="14">Leak test -> pressure -> drones -> chanter</text>
+  <text x="112" y="608" font-size="14">Repeat after 24h for hemp/moisture drift</text>
+
+  <text x="880" y="595" font-size="18" font-weight="700">Maintenance Kit</text>
+  <text x="880" y="624" font-size="14">Hemp, beeswax, reeds, tuner, manometer</text>
+
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L9,3 z" fill="#222"/>
+    </marker>
+  </defs>
+</svg>
