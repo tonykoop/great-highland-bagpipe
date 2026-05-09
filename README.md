@@ -18,7 +18,7 @@ maintenance, sourcing, and validation.
 
 ## What This Is
 
-This repository turns the Great Highland Bagpipe workbook into a build-ready
+This repository turns the Great Highland Bagpipe workbook into an L2/L3-candidate
 packet. It treats the instrument as an interacting set of subsystems rather
 than a single pipe: the conical double-reed chanter, two tenor drones, one bass
 drone, three drone reeds, one chanter reed, five stocks, blowpipe valve,
