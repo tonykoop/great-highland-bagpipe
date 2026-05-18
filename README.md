@@ -42,6 +42,10 @@ and pressure setup.
   drones, stocks, blowpipe, mounts, and fixtures.
 - [`validation.csv`](validation.csv) - tuning, pressure, leakage, fit, and
   maintenance checks.
+- [`reed-pressure-validation.csv`](reed-pressure-validation.csv) - reed source
+  roles, onset/cutoff pressure gates, and coupled pressure-response evidence
+  rows kept at measurement-required status until real manometer/tuner data
+  exists.
 - [`assembly-manual.md`](assembly-manual.md) - shop sequence from reeds-first
   testing through final maintenance.
 - [`risks.md`](risks.md) - acoustic, structural, ergonomic, supply, and
@@ -83,7 +87,7 @@ and pressure setup.
 | Acoustic model | First-order conical chanter plus stopped cylindrical drones documented |
 | Manufacturing plan | Lathe/CNC workflow and cut list drafted |
 | Sourcing | Prototype and final-material sourcing tracker drafted |
-| Validation | Tuning, pressure, leakage, fit, and maintenance checks drafted |
+| Validation | Tuning, pressure, leakage, fit, maintenance, reed onset/cutoff, and pressure-response checks drafted |
 | Drawings | First-pass subsystem SVG drawings included |
 | Site/deck/print packet | Generated artifacts live at repo root and `site/` |
 
