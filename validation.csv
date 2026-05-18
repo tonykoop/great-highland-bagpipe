@@ -6,7 +6,7 @@ VAL-004,Chanter scale all notes,Just ratios from design.md,c/(2*f_note),see desi
 VAL-005,Tenor drone A3,240 Hz,c/(4*240),14.073,,in effective,+/-0.5 in before slide tuning,room,Pending,Check slide range before duplicate tenor
 VAL-006,Tenor drone frequency,240 Hz with chosen reed,stopped pipe plus reed/slide,240,,Hz,+/-5 cents against chanter Low A,record pressure and reed,Pending,Adjust reed bridle/screw then slide
 VAL-007,Bass drone A2,120 Hz,c/(4*120),28.146,,in effective,+/-1.0 in before slide tuning,room,Pending,Confirm bass slide travel and reed stability
-VAL-008,Bag pressure,18-25 inH2O normal play,manometer reading,18-25,,inH2O,+/-2 inH2O,player test,Pending,Log start pressure and cutoff pressure for reeds
+VAL-008,Bag pressure,18-25 inH2O planned normal-play window,manometer reading,18-25 planned,,inH2O,measurement_required,player test,Pending,Log measured start normal-play and cutoff pressure before treating the range as evidence
 VAL-009,Bag leak,Hold pressure for 60 seconds,pressure decay test,no audible leak,,pass/fail,No audible leak and slow pressure decay,bag assembled,Pending,Soap/bubble or manometer leak locate
 VAL-010,Blowpipe valve,No reverse flow,back-pressure test,no backflow,,pass/fail,No noticeable reverse flow,bag assembled,Pending,Replace or reseat valve if failed
 VAL-011,Drone slide fit,Smooth travel airtight,hand force plus leak test,smooth and sealed,,pass/fail,No binding no leak,hemped joint,Pending,Adjust hemp wrap and wax
