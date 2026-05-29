@@ -77,14 +77,22 @@ and pressure setup.
 
 ## Status
 
+**Status: L2 V5 build-packet candidate**
+
+All required V5 baseline files present. All validation gates remain
+`Pending` — instrument is not build-ready until reed, bore, and pressure
+measurements are completed.
+
 | Area | Status |
 | --- | --- |
+| V5 readiness | L2 candidate — visual-output-register.csv and cad/mcp-session-log.md present |
 | Workbook | Existing `great-highland-bagpipe-design-table.xlsx` inspected and promoted into packet files |
 | Acoustic model | First-order conical chanter plus stopped cylindrical drones documented |
 | Manufacturing plan | Lathe/CNC workflow and cut list drafted |
 | Sourcing | Prototype and final-material sourcing tracker drafted |
-| Validation | Tuning, pressure, leakage, fit, and maintenance checks drafted |
-| Drawings | First-pass subsystem SVG drawings included |
+| Validation | Tuning, pressure, leakage, fit, and maintenance checks drafted; all Pending |
+| Drawings | First-pass subsystem SVG drawings included (concept_only / derived_preview) |
+| CAD | OpenSCAD master starter present; pending_measurement authority |
 | Site/deck/print packet | Generated artifacts live at repo root and `site/` |
 
 ## License
