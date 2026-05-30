@@ -102,6 +102,20 @@ cents_error = 1200 * log2(measured_hz / target_hz)
 pressure_target = 18-25 inH2O for first prototype testing
 ```
 
+`family-spec.csv` now records the source role for each reed-coupled subsystem.
+The chanter is treated as an empirically seeded conical reed pipe for planning
+purposes, with final authority coming from purchased double-reed measurements.
+The drones are treated as empirically seeded stopped reed pipes, with the
+second tenor explicitly blocked from copy status until the first tenor reed,
+slide, and pressure response are measured. `reed-pressure-validation.csv`
+defines the pressure gates that must be filled before any reed, bore, slide, or
+coupled tuning claim can move beyond `measurement_required`.
+
+Do not use the 18-25 inH2O range as measured evidence by itself. It is only the
+planned normal-play test window until a manometer log records onset pressure,
+normal-play stability, cutoff/choke behavior, reed setting, and cents error for
+the selected chanter and drone reeds.
+
 ### Empirical Correction Guard
 
 No Native American flute K2 correction is applied here. This packet uses
@@ -179,4 +193,3 @@ Validation starts with the subsystem, then moves to the coupled system:
    and corrective action in `validation.csv`.
 5. Repeat after 24 hours to catch hemp compression, bag leakage, and moisture
    effects.
-
