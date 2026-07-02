@@ -52,6 +52,10 @@ and pressure setup.
   fit/finish risk tests.
 - [`drawings/`](drawings/) - first-pass dimensioned SVG sheets.
 - [`cad/`](cad/) - parametric OpenSCAD master starter.
+- [`wolfram/`](wolfram/) - generated Wolfram source package (chanter/drone
+  stopped-pipe model); source-only, not executed.
+- [`evolution/`](evolution/) - evolution-pipeline Stage 0 intake: master
+  manifest, design-intent, and revision register (Gate A not yet run).
 - [`site/`](site/) - static build-log site generated from the packet.
 
 ## System Architecture
@@ -81,7 +85,7 @@ and pressure setup.
 
 ## Status
 
-**Status: L2 V5 build-packet candidate**
+**Status:** L2 V5 build-packet candidate
 
 All required V5 baseline files present. All validation gates remain
 `Pending` — instrument is not build-ready until reed, bore, and pressure
