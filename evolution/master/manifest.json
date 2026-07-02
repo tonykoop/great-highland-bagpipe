@@ -1,0 +1,34 @@
+{
+  "product": "great-highland-bagpipe",
+  "pipeline": "studiopipeline:evolution-pipeline",
+  "stage": "0-intake",
+  "master_revision": "pre-commit intake, 2026-07-01",
+  "generated": "2026-07-01",
+  "cad_masters": [
+    {
+      "path": "cad/great-highland-bagpipe-master.scad",
+      "format": "openscad-source",
+      "sha256": "7bcdc95fce3c7fae077277482be11eb72df51515757a26632cf0f1e08deeaa63",
+      "authority": "pending_measurement",
+      "lossy": false,
+      "notes": "Parametric master starter (chanter cone + drone/blowpipe/stock envelope). Kept as-is; not fabrication authority."
+    },
+    {
+      "path": "wolfram/great-highland-bagpipe-wolfram-model.wl",
+      "format": "wolfram-source",
+      "sha256": "00815700789be575b66bf3a389b76ee9d07ade2828dae5754b3a5cf283401d7e",
+      "authority": "derived_preview",
+      "lossy": false,
+      "notes": "Generated this pass; source-only, not executed."
+    },
+    {
+      "path": "great-highland-bagpipe-design-table.xlsx",
+      "format": "design-table",
+      "sha256": "3ddafd30d57a32bd5da541066588c79f2f1255a5bc5907dc597e76836bcbe0d7",
+      "authority": "fabrication",
+      "lossy": false,
+      "notes": "Current dimensional authority (chanter/drone/blowpipe rows)."
+    }
+  ],
+  "notes": "OpenSCAD source + design table are the current masters; no STEP export yet (out of scope). Gate A (Alpha workspace compile) not yet run. Coupled reed/resonator/bag-pressure system stays measurement-required per family-spec.csv."
+}
